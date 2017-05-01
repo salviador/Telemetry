@@ -12,7 +12,7 @@
    void init_serialChart(void);
    void serialChart_write(uint8_t *data);
    uint8_t serialChart_wait_receiveByte(uint8_t *data);
-   void serialChart_sendJsonTelemetry(struct CH1 channel1, uint16_t ch1size);
+   void serialChart_sendJsonTelemetry(struct CH channel1, struct CH channel2, uint16_t ch1size);
 
    
    

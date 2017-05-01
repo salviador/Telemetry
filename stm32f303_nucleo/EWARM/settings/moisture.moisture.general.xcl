@@ -2,7 +2,7 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\bin\armstlink2.dll" 
 
-"E:\Telemetry\stm32f303_nucleo\EWARM\moisture\Exe\moisture.out" 
+"C:\Users\michele\Desktop\Moisture\moisture\EWARM\moisture\Exe\moisture.out" 
 
 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\bin\armbat.dll" 
 

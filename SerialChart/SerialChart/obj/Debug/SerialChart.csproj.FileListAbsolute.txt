@@ -9,14 +9,3 @@ E:\SerialChart\SerialChart\obj\Debug\SerialChart.Properties.Resources.resources
 E:\SerialChart\SerialChart\obj\Debug\SerialChart.csproj.GenerateResource.Cache
 E:\SerialChart\SerialChart\obj\Debug\SerialChart.exe
 E:\SerialChart\SerialChart\obj\Debug\SerialChart.pdb
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\bin\Debug\SerialChart.exe.config
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\bin\Debug\SerialChart.exe
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\bin\Debug\SerialChart.pdb
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\bin\Debug\Newtonsoft.Json.dll
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\bin\Debug\Newtonsoft.Json.xml
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\obj\Debug\SerialChart.csprojResolveAssemblyReference.cache
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\obj\Debug\SerialChart.Form1.resources
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\obj\Debug\SerialChart.Properties.Resources.resources
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\obj\Debug\SerialChart.csproj.GenerateResource.Cache
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\obj\Debug\SerialChart.exe
-C:\Users\michele\Desktop\Moisture\SerialChart\SerialChart\obj\Debug\SerialChart.pdb

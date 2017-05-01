@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "E:\Telemetry\stm32f303_nucleo\EWARM\settings\moisture.moisture.general.xcl" --backend -f "E:\Telemetry\stm32f303_nucleo\EWARM\settings\moisture.moisture.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "C:\Users\michele\Desktop\Moisture\moisture\EWARM\settings\moisture.moisture.general.xcl" --backend -f "C:\Users\michele\Desktop\Moisture\moisture\EWARM\settings\moisture.moisture.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "E:\Telemetry\stm32f303_nucleo\EWARM\settings\moisture.moisture.general.xcl" "--debug_file=%~1" --backend -f "E:\Telemetry\stm32f303_nucleo\EWARM\settings\moisture.moisture.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "C:\Users\michele\Desktop\Moisture\moisture\EWARM\settings\moisture.moisture.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\michele\Desktop\Moisture\moisture\EWARM\settings\moisture.moisture.driver.xcl" 
 
 @echo off 
 :end

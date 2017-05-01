@@ -64,8 +64,14 @@ namespace SerialChart
                     chart1.Series["ch1Point"].Points.AddXY((double)x, (double)data.ch1[i]);
                     chart1.Series["ch1filter"].Points.AddXY((double)x, (double)data.ch1filter[i]);
                     chart1.Series["ch1filterPoint"].Points.AddXY((double)x, (double)data.ch1filter[i]);
+                    chart1.Series["rms"].Points.AddXY((double)x, (double)data.rms);
+                    chart1.Series["rmsPoint"].Points.AddXY((double)x, (double)data.rms);
 
-                    
+                    chart1.Series["ch2"].Points.AddXY((double)x, (double)data.ch2[i]);
+                    chart1.Series["ch2Point"].Points.AddXY((double)x, (double)data.ch2[i]);
+                    chart1.Series["ch2filter"].Points.AddXY((double)x, (double)data.ch2filter[i]);
+                    chart1.Series["ch2filterPoint"].Points.AddXY((double)x, (double)data.ch2filter[i]);
+                    chart1.Series["rms2"].Points.AddXY((double)x, (double)data.rms2);
 
                     x++;
                 }
@@ -100,6 +106,14 @@ namespace SerialChart
             chart1.Series["ch1Point"].Points.Clear();
             chart1.Series["ch1filter"].Points.Clear();
             chart1.Series["ch1filterPoint"].Points.Clear();
+            chart1.Series["rms"].Points.Clear();
+            chart1.Series["rmsPoint"].Points.Clear();
+
+            chart1.Series["ch2"].Points.Clear();
+            chart1.Series["ch2Point"].Points.Clear();
+            chart1.Series["ch2filter"].Points.Clear();
+            chart1.Series["ch2filterPoint"].Points.Clear();
+            chart1.Series["rms2"].Points.Clear();
             x = 0;
         }
     }

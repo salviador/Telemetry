@@ -3,6 +3,8 @@
 
 UART_HandleTypeDef huart2;
 
+
+
 void init_serialChart(void){
   GPIO_InitTypeDef GPIO_InitStruct;
 
@@ -43,7 +45,7 @@ uint8_t serialChart_wait_receiveByte(uint8_t *data){
 }
 
 
-void serialChart_sendJsonTelemetry(struct CH1 channel1, uint16_t ch1size){
+void serialChart_sendJsonTelemetry(struct CH channel1, struct CH channel2, uint16_t ch1size){
   uint8_t buffer[100];
   uint16_t i;
   
@@ -79,9 +81,58 @@ void serialChart_sendJsonTelemetry(struct CH1 channel1, uint16_t ch1size){
   sprintf((char *)buffer, "]");
   HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY); 
 
+  //"rms" : 10.2
+  sprintf((char *)buffer, ",\"rms\":%.1f", channel1.rms);
+  HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+
+
+  
+  
+  
+  
+  
+  
+  
+  //"ch2" : [30,20,20,20,..... ]
+  sprintf((char *)buffer, ",\"ch2\":[");
+  HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+  for(i=0;i<ch1size;i++){
+    sprintf((char *)buffer, "%d", channel2.buffer[i]);
+    HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+    if(i != ch1size-1){
+      sprintf((char *)buffer, ",");
+      HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+    }
+  }
+  sprintf((char *)buffer, "]");
+  HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+  
+  //"ch2filter" : [30,20,20,20,..... ]
+  sprintf((char *)buffer, ",\"ch2filter\":[");
+  HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+  for(i=0;i<ch1size;i++){
+    sprintf((char *)buffer, "%.1f", channel2.bufferfilter[i]);
+    HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+    if(i != ch1size-1){
+      sprintf((char *)buffer, ",");
+      HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+    }
+  }
+  sprintf((char *)buffer, "]");
+  HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY); 
+
+  //"rms" : 10.2
+  sprintf((char *)buffer, ",\"rms2\":%.1f", channel2.rms);
+  HAL_UART_Transmit(&huart2, buffer, strlen((const char *)buffer), HAL_MAX_DELAY);
+  
 
 
 
+
+
+
+  
+  
 
   //}
   sprintf((char *)buffer, "}\r\n");

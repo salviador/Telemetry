@@ -1,16 +1,16 @@
-"E:\Telemetry\stm32f303_nucleo\Src\adconv.c"
+"C:\Users\michele\Desktop\Moisture\moisture\Src\adconv.c"
 -std=c99
 -ferror-limit=100
 -I
-E:\Telemetry\stm32f303_nucleo\EWARM/../Inc
+C:\Users\michele\Desktop\Moisture\moisture\EWARM/../Inc
 -I
-E:\Telemetry\stm32f303_nucleo\EWARM/../Drivers/STM32F3xx_HAL_Driver/Inc
+C:\Users\michele\Desktop\Moisture\moisture\EWARM/../Drivers/STM32F3xx_HAL_Driver/Inc
 -I
-E:\Telemetry\stm32f303_nucleo\EWARM/../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy
+C:\Users\michele\Desktop\Moisture\moisture\EWARM/../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy
 -I
-E:\Telemetry\stm32f303_nucleo\EWARM/../Drivers/CMSIS/Device/ST/STM32F3xx/Include
+C:\Users\michele\Desktop\Moisture\moisture\EWARM/../Drivers/CMSIS/Device/ST/STM32F3xx/Include
 -I
-E:\Telemetry\stm32f303_nucleo\EWARM/../Drivers/CMSIS/Include
+C:\Users\michele\Desktop\Moisture\moisture\EWARM/../Drivers/CMSIS/Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\CMSIS\Include
 -I
@@ -18,15 +18,15 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\inc\c
 -I
-E:\Telemetry\stm32f303_nucleo\Inc
+C:\Users\michele\Desktop\Moisture\moisture\Inc
 -I
-E:\Telemetry\stm32f303_nucleo\Drivers\STM32F3xx_HAL_Driver\Inc
+C:\Users\michele\Desktop\Moisture\moisture\Drivers\STM32F3xx_HAL_Driver\Inc
 -I
-E:\Telemetry\stm32f303_nucleo\Drivers\STM32F3xx_HAL_Driver\Inc\Legacy
+C:\Users\michele\Desktop\Moisture\moisture\Drivers\STM32F3xx_HAL_Driver\Inc\Legacy
 -I
-E:\Telemetry\stm32f303_nucleo\Drivers\CMSIS\Device\ST\STM32F3xx\Include
+C:\Users\michele\Desktop\Moisture\moisture\Drivers\CMSIS\Device\ST\STM32F3xx\Include
 -I
-E:\Telemetry\stm32f303_nucleo\Drivers\CMSIS\Include
+C:\Users\michele\Desktop\Moisture\moisture\Drivers\CMSIS\Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\CMSIS\Include
 -DUSE_HAL_DRIVER=1

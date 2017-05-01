@@ -40,7 +40,7 @@
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
-#define LED_Pin GPIO_PIN_12
+#define LED_Pin GPIO_PIN_11
 #define LED_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */

@@ -8,11 +8,10 @@ TIM_HandleTypeDef htim2;
 
 #define   OUT_FREQ          10000                                // Output waveform frequency
 #define   SINE_RES          128                                  // Waveform resolution
-#define   DAC_DHR12R1_ADDR  0x40007408                           // DMA writes into this reg on every request
 #define   CNT_FREQ          64000000                             // TIM6 counter clock (prescaled APB1)
 #define   TIM_PERIOD        ((CNT_FREQ)/((SINE_RES)*(OUT_FREQ))) // Autoreload reg value
 
-
+/*
 const uint16_t function[SINE_RES] = { 2048, 2145, 2242, 2339, 2435, 2530, 2624, 2717, 2808, 2897, 
                                       2984, 3069, 3151, 3230, 3307, 3381, 3451, 3518, 3581, 3640, 
                                       3696, 3748, 3795, 3838, 3877, 3911, 3941, 3966, 3986, 4002, 
@@ -26,6 +25,32 @@ const uint16_t function[SINE_RES] = { 2048, 2145, 2242, 2339, 2435, 2530, 2624, 
                                       129, 154, 184, 218, 257, 300, 347, 399, 455, 514, 
                                       577, 644, 714, 788, 865, 944, 1026, 1111, 1198, 1287, 
                                       1378, 1471, 1565, 1660, 1756, 1853, 1950, 2047 };  
+
+*/
+
+
+const uint16_t function[SINE_RES] = { 2048, 2141, 2235, 2328, 2421, 2512, 2603, 2692, 2779, 2865, 
+                                      2948, 3030, 3109, 3185, 3259, 3330, 3398, 3462, 3523, 3580, 
+                                      3633, 3683, 3728, 3770, 3807, 3840, 3869, 3893, 3912, 3927, 
+                                      3938, 3944, 3945, 3941, 3933, 3921, 3903, 3881, 3855, 3824, 
+                                      3789, 3750, 3706, 3659, 3607, 3552, 3493, 3430, 3364, 3295, 
+                                      3223, 3148, 3070, 2989, 2907, 2822, 2736, 2647, 2557, 2466, 
+                                      2374, 2282, 2188, 2094, 2001, 1907, 1813, 1721, 1629, 1538, 
+                                      1448, 1359, 1273, 1188, 1106, 1025, 947, 872, 800, 731, 
+                                      665, 602, 543, 488, 436, 389, 345, 306, 271, 240, 
+                                      214, 192, 174, 162, 154, 150, 151, 157, 168, 183, 
+                                      202, 226, 255, 288, 325, 367, 412, 462, 515, 572, 
+                                      633, 697, 765, 836, 910, 986, 1065, 1147, 1230, 1316, 
+                                      1403, 1492, 1583, 1674, 1767, 1860, 1954, 2047 };
+
+
+
+
+
+
+
+
+
 
 void init_gen_sinewave(void){
   GPIO_InitTypeDef GPIO_InitStruct;
@@ -52,7 +77,7 @@ void init_gen_sinewave(void){
     htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
     htim2.Init.Period = (uint16_t)TIM_PERIOD; 
     htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-    htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE; //TIM_AUTORELOAD_PRELOAD_DISABLE;
+    htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE; //TIM_AUTORELOAD_PRELOAD_ENABLE; //TIM_AUTORELOAD_PRELOAD_DISABLE;
     HAL_TIM_Base_Init(&htim2);
     sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
     HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig);
@@ -61,8 +86,8 @@ void init_gen_sinewave(void){
     sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
     HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
 
-    HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(TIM2_IRQn);  
+  //  HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
+  //  HAL_NVIC_EnableIRQ(TIM2_IRQn);  
     
     //Dac Inizialize
     hdac1.Instance = DAC1;
@@ -85,11 +110,13 @@ void init_gen_sinewave(void){
     __HAL_LINKDMA(&hdac1,DMA_Handle1,hdma_dac1_ch1);
     
     /* DMA1_Channel3_IRQn interrupt configuration */
-    HAL_NVIC_SetPriority(DMA1_Channel3_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(DMA1_Channel3_IRQn);
+ //   HAL_NVIC_SetPriority(DMA1_Channel3_IRQn, 0, 0);
+ //   HAL_NVIC_EnableIRQ(DMA1_Channel3_IRQn);
 
     
-    HAL_TIM_Base_Start_IT(&htim2);
+//    HAL_TIM_Base_Start_IT(&htim2);
+      HAL_TIM_Base_Start(&htim2);
+
     //HAL_DMA_Start_IT(&hdma_dac1_ch1, (uint32_t)function,(uint32_t)&hdac1.Instance->DHR12R1, SINE_RES);
     HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, (uint32_t*)function, SINE_RES, DAC_ALIGN_12B_R);
  

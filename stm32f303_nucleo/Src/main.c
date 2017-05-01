@@ -62,14 +62,19 @@ static void MX_SPI1_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-extern struct CH1 ch1;
+extern struct CH ch1;
+extern struct CH ch2;
 extern uint8_t ADC1_flag;
 uint8_t bufferRX[10];
+
+volatile __IO float VRMS,VRMSm,VRMSsomma;
 
 /* USER CODE END 0 */
 
 int main(void)
 { 
+  uint16_t i;
+  
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -88,28 +93,44 @@ int main(void)
   MX_SPI1_Init();
 
   /* USER CODE BEGIN 2 */
- // init_gen_sinewave();
+  init_gen_sinewave();
   init_serialChart();
   init_adcConv();
 
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  
   //HAL_Delay(5000);
 
+  for(i=0;i<6000;i++){
+    start_adcConv();    
+    WAIT_Conv_IS_DONE();
+    hpf_ch1();
+    hpf_ch2();
+    VRMS = ch1.rms * 0.0008056640625;
+  }
+  for(i=0;i<6000;i++){
+    start_adcConv();    
+    WAIT_Conv_IS_DONE();
+    hpf_ch1();
+    hpf_ch2();
+    
+    VRMS = ch1.rms * 0.0008056640625000000000000;
+   
+    VRMSsomma -=  (float)VRMSsomma / (float)100.000000000000;   
+    VRMSsomma += (float)VRMS / (float)100.0000000000;
+    VRMSm = (float)VRMSsomma;
+  }
+  
   while (1)
   {
     serialChart_wait_receiveByte(bufferRX);
     
     start_adcConv();    
-    while(ADC1_flag==0){}
+    WAIT_Conv_IS_DONE();
     hpf_ch1();
+    hpf_ch2();
         
     if(bufferRX[0] == 's'){   
       bufferRX[0] = 0x00;
-      serialChart_sendJsonTelemetry(ch1,SIZEBUFFERCH1);
+      serialChart_sendJsonTelemetry(ch1, ch2 ,SIZEBUFFERCH);
     }
     
     __NOP();
@@ -117,7 +138,12 @@ int main(void)
     __NOP();
     __NOP();
     
-
+    VRMS = ch1.rms * 0.0008056640625000000000;
+    
+    VRMSsomma -=  VRMSsomma / 100.00000000;   
+    VRMSsomma += VRMS / 100.000000000;
+   
+    VRMSm = VRMSsomma;
     
     __NOP();
     __NOP();
@@ -272,13 +298,13 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if(htim->Instance == TIM2){
     __NOP();
+    //Toggle LED
+      LED_GPIO_Port->ODR ^= LED_Pin;
     __NOP();
     __NOP();
   }else if (htim->Instance == TIM3){
     __NOP();
     __NOP();
-    //Toggle LED
-      LED_GPIO_Port->ODR ^= LED_Pin;
     __NOP();
   }
 }

@@ -10,5 +10,11 @@ namespace SerialChart
     {
         public int[] ch1 { get; set; }
         public float[] ch1filter { get; set; }
+        public float rms { get; set; }
+
+        public int[] ch2 { get; set; }
+        public float[] ch2filter { get; set; }
+        public float rms2 { get; set; }
+
     }
 }
